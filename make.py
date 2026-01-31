@@ -186,7 +186,7 @@ async def main_async():
     ))
     
     files = [args.file] if args.file else get_files()
-    cache_manager = CacheManager()
+    cache_manager = CacheManager(args.lang)
     
     for file in files:
         await process_file_async(file, args.lang, args.model, args.batch_size, cache_manager)

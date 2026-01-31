@@ -19,7 +19,7 @@ class TestCacheManager(unittest.TestCase):
 
     def test_cache_set_get(self):
         """Test simple set and get operations"""
-        cache = CacheManager(self.cache_file)
+        cache = CacheManager("it", self.cache_file)
         cache.set("Hello", "Ciao")
         
         self.assertEqual(cache.get("Hello"), "Ciao")
@@ -27,7 +27,7 @@ class TestCacheManager(unittest.TestCase):
 
     def test_cache_patch_scenarios(self):
         """Test specific scenarios that happen during a game patch"""
-        cache = CacheManager(self.cache_file)
+        cache = CacheManager("it", self.cache_file)
         
         # Meaning Change (Same English, Different Chinese)
         # Old version of the game had "Light" as "Luce"
@@ -53,12 +53,12 @@ class TestCacheManager(unittest.TestCase):
     def test_cache_persistence(self):
         """Test that cache is saved to disk and reloaded correctly"""
         # Create cache and save data
-        cache1 = CacheManager(self.cache_file)
+        cache1 = CacheManager("it", self.cache_file)
         cache1.set("Cat", "Gatto")
         cache1.save()
 
         # Reload from disk in a new instance
-        cache2 = CacheManager(self.cache_file)
+        cache2 = CacheManager("it", self.cache_file)
         self.assertEqual(cache2.get("Cat"), "Gatto")
 
 class TestOpenAILogic(unittest.TestCase):

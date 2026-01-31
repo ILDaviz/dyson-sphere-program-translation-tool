@@ -6,8 +6,9 @@ class CacheManager:
     Manages translation persistence to avoid redundant API calls.
     Supports context-aware caching (English|Context -> Translation).
     """
-    def __init__(self, cache_file='translation_cache.json'):
-        self.cache_file = cache_file
+    def __init__(self, lang, cache_file=None):
+        self.lang = lang
+        self.cache_file = cache_file if cache_file else f'translation_cache_{lang}.json'
         self.cache = self._load_cache()
 
     def _load_cache(self):
