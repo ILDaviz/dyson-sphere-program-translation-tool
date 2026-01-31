@@ -7,9 +7,11 @@ def get_files():
     return [
         '[outsource].txt',
         '[user].txt',
+        'base.txt',
         'combat.txt',
         'creation.txt',
         'dictionary.txt',
+        'keys.txt',
+        'parameters.txt'
         'prototype.txt',
-        'base.txt'
     ]
