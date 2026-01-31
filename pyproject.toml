@@ -1,0 +1,13 @@
+[project]
+name = "dyson-sphere-program-translation-tool"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.13"
+dependencies = [
+    "openai>=2.16.0",
+    "python-dotenv>=1.2.1",
+    "rich>=14.3.1",
+    "tqdm>=4.67.2",
+]

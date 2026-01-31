@@ -1,71 +1,91 @@
-# Dyson sphere program translation tool!
+# Dyson Sphere Program Translation Tool
 
-A tool for translating the Dyson Sphere Program game into Italian or other languages.  
-This tool is designed to translate the text into any configured language.  
-Currently, the only completed translation is in Italian
+An advanced, AI-powered tool for translating **Dyson Sphere Program** into Italian (or any other language).  
+This tool leverages **OpenAI (GPT-4o/GPT-5)** to provide context-aware, high-quality translations that respect game UI constraints and terminology.
 
-- Italian V0.2 Alpha
+## 🚀 Features
 
-# How to install the mod?
-1. Go to the game's Steam folder.
-2. Locate the `Locale` folder inside the game directory.
-3. Inside `Locale` create a new folder called `1055`.
-4. Copy the contents of `translated/it` into the `1055` folder (remove demo.txt).
-5. Add this line `"1055,Italiano,itIT,it,2052,0"` in `Header.txt` under the line `"1033,English,enUS,en,2052,0"`.
-6. Launch the game and change the language :D
-7. If you find any translation errors, open an issue report or update the file yourself and request a merge request.
+*   **⚡️ High Performance**: Uses **Batch Processing** to translate thousands of lines efficiently.
+*   **🎨 Beautiful UI**: Features a modern, colorful CLI interface with progress bars and rich formatting.
+*   **💰 Cost Efficient**: Implements **Smart Caching**. You only pay for new lines. Re-running the tool costs **$0**.
+*   **🧠 Context-Aware**: Uses the original Chinese text as a reference to disambiguate English terms (e.g., "Power" -> "Electricity" vs "Strength").
+*   **🛡️ Patch-Proof**: Automatically detects if a line's meaning has changed in a game update and re-translates it.
+*   **📏 UI Optimized**: Respects **Character Budgets** and original whitespace padding to ensure text fits perfectly in game UI.
+*   **🚫 Anti-Hallucination**: Automatically filters AI refusals and preserves the original text if translation fails.
 
-## For Developers
+---
 
-### Set up the environment
+## 🎮 How to Install the Mod (Italian)
+
+1.  Go to the game's Steam folder.
+2.  Locate the `Locale` folder: `Dyson Sphere Program/DSPGAME_Data/StreamingAssets/Locale`.
+3.  Create a new folder called `1040` (the standard code for Italian).
+4.  Copy the contents of `translated/it/` into this `1040` folder.
+5.  Edit `Header.txt` in the `Locale` directory and add this line:
+    ```text
+    1040,Italiano,itIT,it,2052,0
+    ```
+6.  Launch the game and select **Italiano** in the settings.
+
+---
+
+## 🛠️ For Developers
+
+### Prerequisites
+- **Python 3.12+**
+- **uv** (Modern Python package manager) -> [Install uv](https://github.com/astral-sh/uv)
+- An **OpenAI API Key**
+
+### Setup
+
+1.  **Clone and Enter**:
+    ```bash
+    git clone https://github.com/your-username/dyson-sphere-program-translation-tool.git
+    cd dyson-sphere-program-translation-tool
+    ```
+
+2.  **Install Environment**:
+    ```bash
+    uv sync
+    ```
+
+3.  **Configure API Key**:
+    Copy `.env.example` to `.env` and add your key:
+    ```bash
+    cp .env.example .env
+    # Edit .env and set OPENAI_API_KEY=sk-...
+    ```
+
+### Usage
+
+**Translate all files into Italian:**
 ```bash
-python3 -m venv venv
+uv run python make.py --lang it
 ```
 
-#### Activate the environment on Mac
+**Advanced Usage:**
 ```bash
-source venv/bin/activate
+# Use a specific model (e.g., GPT-5 Nano)
+uv run python make.py --lang it --model gpt-5-nano
+
+# Translate a single file with custom batch size
+uv run python make.py --lang it --file base.txt --batch-size 50
 ```
 
-#### Activate the environment on Windows
+### Testing
+Verify the translation logic and cache manager:
 ```bash
-venv\Scripts\activate
+uv run python -m unittest tests/test_core.py
 ```
 
-### Install dependencies
-```bash
-pip install -r requirements.txt
-```
+---
 
-## Running the project
-1. Place the files to be translated in the `original/` folder.
-2. Activate the virtual environment:
-   - **Mac/Linux**: `source venv/bin/activate`
-   - **Windows**: `venv\Scripts\activate`
-3. Install the dependencies with `pip install -r requirements.txt`.
-4. Run the `make` script to create files:
-   ```bash
-   python make.py
-   ```
-5. Run the `update` script to update the tests: TODO!
-   ```bash
-   python update.py
-   ```
-6. Translated files will be saved in the `translated/it/` directory.
+## 📄 License
 
-## Additional Notes
-- **Configuration files**: Use the `.env` file for specific configurations.
-- **License**: This project is licensed under the Apache 2.0 license.
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
 
-## Contributions
-Contributions are welcome! Open an `issue` or submit a `pull request` for improvements or fixes.
+---
 
-## Disclaimer
+## ⚠️ Disclaimer
 
-This tool is an **open-source** project developed independently to translate the texts of the video game **Dyson Sphere Program**. This project is **not affiliated with**, **supported by**, or **approved by** **Youthcat Studio** or **Gamera Games**.
-
-All rights related to the video game and its content are owned by their respective rights holders. The use of this tool is entirely at the user's discretion and risk. We provide no **warranties** regarding the accuracy, completeness, or functionality of the generated translations.
-
-This project is created exclusively for **non-commercial** purposes and aims to enhance the gaming experience for the Italian-speaking community or other language communities. Any misuse, unauthorized distribution, or violation of the original video game's terms of service is solely the responsibility of the user.
-
-Please always respect the **terms of use** and **policies** established by the video game developer. For more information or clarification, it is recommended to consult the official resources provided directly by **Youthcat Studio** or **Gamera Games**.
+This tool is an **open-source** project. It is **not affiliated with**, **supported by**, or **approved by** **Youthcat Studio** or **Gamera Games**. All game rights belong to their respective owners.
