@@ -1,7 +1,7 @@
 # Dyson Sphere Program Translation Tool
 
 An advanced, AI-powered tool for translating **Dyson Sphere Program** into Italian (or any other language).  
-This tool leverages **OpenAI (GPT-4o/GPT-5)** to provide context-aware, high-quality translations that respect game UI constraints and terminology.
+This tool leverages **OpenAI** to provide context-aware, high-quality translations that respect game UI constraints and terminology.
 
 ## 🚀 Features
 

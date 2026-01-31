@@ -5,6 +5,7 @@ import argparse
 import time
 from dotenv import load_dotenv
 from rich.console import Console
+from rich.markup import escape
 from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn, TimeRemainingColumn, MofNCompleteColumn
 from rich.panel import Panel
 from src.files_map import get_files
@@ -31,19 +32,19 @@ def process_file(filename, lang, model, batch_size, cache_manager):
     output_path = os.path.join(output_dir, filename)
 
     if not os.path.exists(input_path):
-        console.print(f"[yellow]⚠️  File [bold]{input_path}[/bold] not found. Skipping.[/yellow]")
+        console.print(f"[yellow]⚠️  File [bold]{escape(input_path)}[/bold] not found. Skipping.[/yellow]")
         return
 
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-    console.rule(f"[bold cyan]Processing {filename}[/bold cyan]")
+    console.rule(f"[bold cyan]Processing {escape(filename)}[/bold cyan]")
 
     try:
         with open(input_path, "r", encoding=ENCODING) as f:
             lines = f.readlines()
     except Exception as e:
-        console.print(f"[bold red]❌ Error reading {input_path}:[/bold red] {e}")
+        console.print(f"[bold red]❌ Error reading {escape(input_path)}:[/bold red] {e}")
         return
 
     lines_to_translate = []
@@ -123,9 +124,9 @@ def process_file(filename, lang, model, batch_size, cache_manager):
     try:
         with open(output_path, "w", encoding=ENCODING) as f:
             f.writelines(processed_lines)
-        console.print(f"[bold green]✅ Saved to[/bold green] [underline]{output_path}[/underline]")
+        console.print(f"[bold green]✅ Saved to[/bold green] [underline]{escape(output_path)}[/underline]")
     except Exception as e:
-        console.print(f"[bold red]❌ Error writing to {output_path}:[/bold red] {e}")
+        console.print(f"[bold red]❌ Error writing to {escape(output_path)}:[/bold red] {e}")
 
 def main():
     load_dotenv()
