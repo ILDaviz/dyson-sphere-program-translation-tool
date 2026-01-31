@@ -12,6 +12,6 @@ def get_files():
         'creation.txt',
         'dictionary.txt',
         'keys.txt',
-        'parameters.txt'
+        'parameters.txt',
         'prototype.txt',
     ]
